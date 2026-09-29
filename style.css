@@ -1,0 +1,808 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap'); 
+
+/*Elimina margini*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+/*Barra di navigazione*/
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #F2E8DD;
+    opacity: 1;
+    width: 100%;
+    padding: 15px 15px
+}
+
+/*Logo*/
+.logo img {
+    height: 70px;
+   
+}
+
+/*Lista dei link*/
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap:30px; 
+}
+
+/*Link*/
+.nav-links a {
+    text-decoration: none;
+    color: #000;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: 'Montserrat', serif;
+    transition: color 0.7s ease;
+}
+
+.nav-links a:hover {
+    color: 	#8B8970;
+}
+
+/*Hamburger menu*/
+.hamburger {
+    display:none;
+    font-size: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+}
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    background-color: #000;
+}
+ /*Titolo home*/
+.titolo-home {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 40px 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    line-height: 1.5;
+    color: #000;
+}
+
+.titolo-home::before,
+.titolo-home::after {
+    content: "";
+    width: 150px;
+    height: 2px;
+    background-color:#F2E8DD; 
+}
+
+/*Stile per la sezione home*/
+.foto-home{ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 40px 0;
+}
+
+.foto-home img {
+    width: 30%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 30px;
+}
+
+.testo-home {
+    text-align: center;
+    margin: 40px 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    line-height: 1.5;
+    color: #000;
+}
+
+/*Bottone menù*/
+.menu-home-link {
+    display: inline-block;
+    padding: 12px 35px;
+    border: 2px solid #F2E8DD;
+    border-radius: 30px;
+    color: #F2E8DD;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;;
+}
+
+.menu-home-link:hover {
+    background-color: #F2E8DD;
+    color: #000;
+}
+
+/*Footer pagina*/
+footer {   
+    background-color: #F2E8DD;
+    text-align: center;
+    padding: 20px 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    color: #000;
+}
+
+/*Stile cellulare*/
+@media (max-width:768px) {
+    .hamburger{
+        display:block;
+    }
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .nav-links {
+        position:fixed;
+        left:-100%;
+        /*per modificare lo spazio tra il menu e la parte superiore della pagina, puoi modificare il valore di top*/
+        top:80px;
+        gap: 5px;
+        flex-direction: column;
+        background-color: #F2E8DD; 
+        width: 100%;
+        text-align: center;
+        transition:0.3s;
+    }
+
+    .nav-links.a {
+        margin: 15px 0;
+    }
+
+    .nav-links.active {
+        left:0;
+    }
+
+    .foto-home {
+        display:flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 15px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .foto-home img {
+        width: 85%;
+        height: auto;
+        border-radius: 8px;
+        object-fit: cover;
+    }
+
+    /*1 e 3 foto allineate a sx*/
+    .foto-home img:nth-child(odd){
+        align-self: flex-start;
+    }
+
+    /*Prende la 2 foto e la spinge a dx*/
+    .foto-home img:nth-child(even){
+        align-self: flex-end;
+    }
+
+    /*Ripristina il layout per schermi più larghi*/
+@media (min-width: 760px) {
+    .foto-home{
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .foto-home img{
+        width: 31%;  /*Ritorna alla griglia a 3 colonne affiancate*/
+        align-self:auto; 
+    }
+
+}
+    .testo-home {
+        font-size: 16px;
+        margin: 20px 0;
+    }
+
+    .menu-home-link {
+        padding: 10px 25px;
+        font-size: 16px;
+        text-align: center;
+    }
+
+}
+
+/*Stile menù ottimizzato per cellulare*/
+/* Contenitore principale */
+.menu-container {
+  width: 100%;
+  max-width: 680px; /* Non diventa mai troppo largo nemmeno su tablet/desktop */
+  margin: 0 auto;
+  padding: 15px 20px 40px 20px;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif; /* Font pulito per i testi */
+  color: #222222;
+}
+
+.carta-vini {
+    text-align: center;
+    margin: 30px 0 70px;
+}
+
+.btn-carta-vini{
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+
+    padding: 12px 35px;
+
+    border: 2px solid #F2E8DD;
+    border-radius: 30px;
+
+    color: #F2E8DD;
+    text-decoration: none;
+
+    font-weight: 600;
+
+    transition: 0.3s;
+}
+
+.btn-carta-vini:hover {
+    background-color: #F2E8DD;
+    color: #222;
+}
+
+/* Titolo della Categoria (es. ANTIPASTI, PRIMI) */
+.categoria-titolo {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #111;
+  margin-top: 35px;
+  margin-bottom: 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #111; /* Linea elegante sotto la categoria */
+  cursor: pointer;
+  user-select: none;
+  /*Freccia per indicare che la categoria è cliccabile*/
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+}
+
+.categoria-titolo::after {
+  content: '▼'; /* Freccia verso il basso */
+  font-size: 0.9rem;
+  transition: transform 0.3s ease;
+}
+
+.categoria-titolo.aperta::after {
+  transform: rotate(180deg); /* Ruota la freccia quando la categoria è aperta */
+}
+
+.categoria-piatti {
+  display: none; /* Nasconde i piatti inizialmente */
+  padding-top: 20px;
+}
+
+.categoria-piatti.aperta {
+  display: block; /* Mostra i piatti quando la categoria è aperta */
+}
+
+/* Singolo Piatto */
+.piatto-item {
+  margin-bottom: 22px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed #e0e0e0; /* Divisore discreto tra un piatto e l'altro */
+}
+
+.piatto-item:last-child {
+  border-bottom: none; /* Rimuove la linea dall'ultimo piatto di una categoria */
+}
+
+/* Riga con Nome e Prezzo */
+.piatto-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline; /* Allinea perfettamente il prezzo sulla linea del testo */
+  gap: 12px; /* Impedisce al nome e al prezzo di appiccicarsi su schermi piccoli */
+}
+
+/* Nome del piatto */
+.piatto-nome {
+  font-weight: 600;
+  font-size: 1.05rem; /* Dimensione ideale per la lettura da cellulare */
+  line-height: 1.3;
+  color: #1a1a1a;
+}
+
+/* Prezzo */
+.piatto-prezzo {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #000;
+  white-space: nowrap; /* Impedisce al prezzo di andare a capo su schermi stretti (es. "12,00 €") */
+}
+
+/* Descrizione / Ingredienti */
+.piatto-ingredienti {
+  margin: 6px 0 0 0;
+  font-size: 0.88rem;
+  line-height: 1.4;
+  color: #666666;
+  font-style: italic;
+  padding-right: 15px; /* Lascia un po' di respiro sul margine destro */
+}
+
+/*Adattamento automatico per tablet e desktop*/
+@media (min-width: 768px) {
+  .menu-container {
+    padding: 30px 0;
+  }
+  
+  .categoria-titolo {
+    font-size: 1.6rem;
+    margin-top: 50px;
+  }
+
+  .piatto-nome, .piatto-prezzo {
+    font-size: 1.15rem;
+  }
+  
+  .piatto-ingredienti {
+    font-size: 0.95rem;
+  }
+}
+
+
+/*Pagina contatti*/
+.contatti {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.info-contatti {
+    padding: 0;
+}
+
+.mappa {
+    width: 100%;
+    height: 450px;
+    overflow: hidden;
+    border-radius: 16px;
+}
+
+.mappa iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.btn-maps {
+    display: inline-block;
+
+    padding: 12px 35px;
+
+    border: 2px solid #F2E8DD;
+    border-radius: 30px;
+
+    color: #F2E8DD;
+    text-decoration: none;
+
+    font-weight: 600;
+
+    transition: 0.3s;
+}
+
+.btn-maps:hover {
+    background-color: #F2E8DD;
+    color: #222;
+}
+
+/*Smartphone */
+@media (max-width: 768px) {
+    .contatti {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 40px 15px;
+    }
+
+    .mappa {
+        height: 350px;
+    }
+
+    .info-contatti {
+        padding: 20px;
+    }
+}
+
+/* SOCIAL e DELIVERY */
+
+.social-delivery {
+    margin-top: 40px;
+    margin-left: 0;
+    padding-left: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.social-delivery h3 {
+    margin-bottom: 15px;
+}
+
+
+/* SOCIAL */
+
+.social-links {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 48px;
+    height: 48px;
+
+    border: 2px solid #F2E8DD;
+    border-radius: 50%;
+
+    color: #F2E8DD;
+    text-decoration: none;
+
+    font-size: 20px;
+
+    transition: 0.3s;
+}
+
+.social-links a:hover {
+    background-color: #F2E8DD;
+    color: #222;
+}
+
+
+/* DELIVERY */
+
+.delivery-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.delivery-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+
+    padding: 12px 25px;
+
+    border: 2px solid #F2E8DD;
+    border-radius: 30px;
+
+    color: #F2E8DD;
+    text-decoration: none;
+
+    font-weight: 600;
+
+    transition: 0.3s;
+}
+
+.delivery-links a:hover {
+    background-color: #F2E8DD;
+    color: #222;
+}
+
+.delivery-links img {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+}
+
+
+/* SMARPHONE SOCIAL E DELIVERY*/
+
+@media (max-width: 768px) {
+
+    .social-links a {
+        width: 45px;
+        height: 45px;
+    }
+
+    .delivery-links {
+        width: 100%;
+    }
+
+    .delivery-links a {
+        flex: 1;
+    }
+
+}
+
+
+/*GALLERIA*/
+.titolo-galleria {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: 45px 15px 20px;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 25px;
+    font-weight: 700;
+    color: #000;
+}
+
+
+/* Linee ai lati del titolo */
+
+.titolo-galleria::before,
+.titolo-galleria::after {
+
+    content: "";
+    flex: 1;
+    max-width: 120px;
+    height: 2px;
+    background-color: #F2E8DD;
+}
+
+
+/* =========================================
+   TESTO INTRODUTTIVO
+========================================= */
+
+.intro-galleria {
+
+    max-width: 600px;
+    margin: 0 auto 45px;
+    padding: 0 20px;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #000;
+}
+
+
+/* =========================================
+   GALLERIA
+========================================= */
+
+.galleria {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+}
+
+
+/* =========================================
+   FOTO
+========================================= */
+
+.foto-galleria {
+
+    width: 75%;
+    overflow: hidden;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+.foto-galleria img {
+
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+
+/* Effetto quando passi sopra con il mouse */
+
+.foto-galleria:hover img {
+    transform: scale(1.04);
+}
+
+
+/* Foto alternate */
+
+.foto-galleria:nth-child(odd) {
+    align-self: flex-start;
+}
+
+
+.foto-galleria:nth-child(even) {
+    align-self: flex-end;
+}
+
+/* =========================================
+   LIGHTBOX
+========================================= */
+
+.lightbox {
+
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.94);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+
+}
+
+
+/* Lightbox aperto */
+
+.lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* =========================================
+   IMMAGINE LIGHTBOX
+========================================= */
+
+.lightbox-image {
+    max-width: 88%;
+    max-height: 85vh;
+    object-fit: contain;
+}
+
+/* =========================================
+   BOTTONE CHIUSURA
+========================================= */
+
+.lightbox-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    border: none;
+    background: none;
+    color: white;
+    font-size: 40px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    cursor: pointer;
+}
+
+/* =========================================
+   FRECCE
+========================================= */
+
+.lightbox-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: none;
+    color: white;
+    font-size: 45px;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+}
+
+.lightbox-prev {
+    left: 10px;
+}
+
+.lightbox-next {
+    right: 10px;
+}
+
+
+/* =========================================
+   DESKTOP
+========================================= */
+
+@media (min-width: 769px) {
+
+    .titolo-galleria {
+        margin-top: 60px;
+        font-size: 28px;
+    }
+
+    .galleria {
+        gap: 35px;
+    }
+
+    .foto-galleria {
+        width: 55%;
+    }
+
+    .foto-galleria:nth-child(odd) {
+        align-self: flex-start;
+    }
+
+    .foto-galleria:nth-child(even) {
+        align-self: flex-end;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .titolo-galleria {
+
+        font-size: 22px;
+        gap: 10px;
+        margin-top: 35px;
+    }
+
+    .titolo-galleria::before,
+    .titolo-galleria::after {
+        max-width: 50px;
+    }
+
+    .intro-galleria {
+        font-size: 14px;
+        margin-bottom: 35px;
+
+    }
+
+    .galleria {
+        padding: 0 15px 50px;
+        gap: 20px;
+    }
+
+    .foto-galleria {
+        width: 85%;
+        border-radius: 8px;
+    }
+
+    .lightbox-image {
+        max-width: 92%;
+        max-height: 80vh;
+    }
+
+    .lightbox-arrow {
+        font-size: 38px;
+    }
+
+}
+
+
+

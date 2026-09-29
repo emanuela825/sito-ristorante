@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B-53 | Menù</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="menu-body">  
+    <header>    
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <img src="img/logo.png" alt="Logo del ristorante">
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menù</a></li>
+                <li><a href="galleria.html">Galleria</a></li>
+                <li><a href="contatti.html">Contatti</a></li>
+            </ul>
+
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+ <script src="script.js"></script>
+
+ <section class="menu-container">
+    <h1 class="titolo-menu">Il Nostro Menù</h1>
+    <p class="descrizione-menu">Scopri i nostri piatti speciali, preparati con ingredienti di qualità e passione.</p>
+    <div id="menu-content">Caricamento menù in corso...</div>
+ </section>
+
+
+ <!-- Libreria gratuita PapaParse per leggere il file di Google Fogli -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+
+<script>
+  // Link generato da Google Fogli (deve finire con output=csv)
+  const GOOGLE_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT6soqzmLACLxy33IzGruY_tR9RO50cSOo7vEuz_dGGmMeva-dEom27jc8sOi2TWLiIJvrgVlFn0Pr4/pub?output=csv';
+
+  Papa.parse(GOOGLE_SHEET_CSV_URL, {
+    download: true,
+    header: true,
+    complete: function(results) {
+      const data = results.data;
+      const menuContainer = document.getElementById('menu-content');
+      menuContainer.innerHTML = ''; // Pulisce il testo di caricamento
+
+      let categorie = {};
+let ordineCategorie = [];
+
+// Raggruppa i piatti per categoria
+data.forEach(item => {
+  // Ignora righe vuote
+  if (!item.Nome || !item.Categoria) return;
+
+  const categoria = item.Categoria.trim();
+
+  // Crea la categoria se non esiste
+  if (!categorie[categoria]) {
+    categorie[categoria] = [];
+    ordineCategorie.push(categoria);
+  }
+
+  // Aggiunge il piatto alla categoria
+  categorie[categoria].push(item);
+});
+
+let htmlContent = '';
+
+// Crea il menu categoria per categoria
+ordineCategorie.forEach((categoria, index) => {
+
+  htmlContent += `
+    <h2 class="categoria-titolo" data-categoria="${index}">
+      ${categoria}
+    </h2>
+
+    <div class="categoria-piatti" data-piatti="${index}">
+  `;
+
+  // Inserisce i piatti della categoria
+  categorie[categoria].forEach(item => {
+
+    htmlContent += `
+      <div class="piatto-item">
+        <div class="piatto-header">
+          <span class="piatto-nome">${item.Nome}</span>
+          <span class="piatto-prezzo">${item.Prezzo}</span>
+        </div>
+
+        ${
+          item.Ingredienti
+            ? `<p class="piatto-ingredienti">${item.Ingredienti}</p>`
+            : ''
+        }
+      </div>
+    `;
+  });
+
+  htmlContent += `</div>`;
+});
+
+menuContainer.innerHTML = htmlContent;
+
+
+// Gestione apertura/chiusura categorie
+const categorieTitoli = document.querySelectorAll('.categoria-titolo');
+
+categorieTitoli.forEach(titolo => {
+
+  titolo.addEventListener('click', function() {
+
+    const id = this.dataset.categoria;
+    const piatti = document.querySelector(
+      `.categoria-piatti[data-piatti="${id}"]`
+    );
+
+    // Apre/chiude la categoria
+    this.classList.toggle('aperta');
+    piatti.classList.toggle('aperta');
+
+  });
+
+});
+
+    }
+  }); 
+
+</script>
+
+<div class="carta-vini">
+ <a href="img/pdf/carta-vini.pdf" target="_blank" class="btn-carta-vini">Carta dei Vini</a>
+</div> 
+
+<footer class="footer">
+    <p>&copy; 2026 B-53. Tutti i diritti riservati.</p>
+ </footer>
+</body>
+</html>
